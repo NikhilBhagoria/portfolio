@@ -1,13 +1,17 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { Route, Router } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 const Home = React.lazy(() => import("./components/Home"));
-
+const NavMenu = React.lazy(() => import("./layout/NavMenu"));
 function App() {
   return (
-    <Router>
-      <Route path='/home' name="home" element={<Home />} />
-    </Router>
+    <>
+      <NavMenu />
+      <Routes>
+        <Route path='/' element={<Navigate to="/home" replace />} />
+        <Route path='/home' name="home" element={<Home />} />
+      </Routes>
+    </>
   );
 }
 
